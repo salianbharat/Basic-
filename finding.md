@@ -1,0 +1,36 @@
+I went through all fourteen tabs (Productivity, Velocity, Predictability, Defect Density, Defects, the pivots, Review4/5, and the "Lead Observations" tab your team member built) and cross-checked the headline claims against the underlying sprint-by-sprint numbers. Here's what stands out.
+
+## 1. Report-level issues (fix these before this goes to a board/steering audience)
+
+**A. The month-over-month "Productivity" trend in Review4/5 isn't comparable.** Productivity = Velocity ÷ (FTE × a "divisor"), and the divisor silently changes: 2 for most months, 3 for Dec'25, and just 1 for Jun'26. Jun'26 velocity (868) looks like a cliff compared to May'26 (1,785), but that's because Jun'26 is only a half-reported period, not a real decline. If this chart goes upward without that caveat, it will read as a productivity crash that isn't real.
+
+**B. FTE cuts aren't narrated anywhere.** Billable FTE drops from 189 → 155 around Jan'26, and "FTE contributing to SP" drops from 131 → 115 around Mar'26. Nothing in the report explains why headcount fell ~18% and ~12% at those points. This matters for the "retaining volume, not value" framing you've been building — if this delivery org lost real capacity mid-year, that's a direct input to any org-level talent-risk narrative.
+
+**C. Nine rows at the bottom of "Master Productivity" (rows 29–36) have sprint data (values like 5, 10, 10, 10, 8, 6.4) but no SL No, Domain, Workstream, or Application name.** This is untraceable data sitting inside a report that otherwise rolls up to portfolio averages. It should either be attributed or dropped before recirculation.
+
+**D. Two apps are flagged "Active App: No" but are fully staffed and delivering** — Einstein 360 (4 FTEs, live sprint data through Sp26) and XM360 Recovery/Reliability (6.5 FTEs in Q3/Q4). If "Active App = No" is meant to exclude retired/deprioritized apps from portfolio averages, these two are polluting or being wrongly excluded from the numbers — worth confirming which.
+
+**E. The entire Payment & Billing workstream shows exactly 0.000000% PRD defect density across 12 straight sprints** (Pivot PRD Defect Density: 0% in both Q1 and Q2). Genuinely zero defects for six live scrums over six months is far more consistent with "defects aren't being logged against this workstream" than with "this workstream ships flawlessly."
+
+**F. Predictability (SP accepted ÷ SP planned) is structurally broken for at least two apps** — Flow Engine (optimus) swings as high as 12.0x and 5.67x planned capacity across multiple sprints; CPOS swings from 0.28 to 4.67. A predictability ratio that far from 1.0 usually means the "planned" or "accepted" input is being logged inconsistently, not that the team is wildly over-delivering.
+
+## 2. Your team member's "Lead Observations" tab — one meta-observation
+
+The questions in that tab are templated by pattern label, not by app: every app tagged "Q3TD reversal" gets the identical sentence ("What changed after the Q2 improvement, and is the Q3TD reversal caused by capacity, complexity, dependencies, scope, or timing?"), word for word, regardless of what's actually going on underneath. That's fine as a starting scaffold, but it means the tab hasn't actually looked at the data behind each app — it's pattern-matched on the trendline shape. The questions below are grounded in the specific numbers for each app instead.
+
+## 3. Application-specific observations + the question I'd actually ask each owner
+
+| Application (Owner) | What the data shows | Question for the owner |
+|---|---|---|
+| **XM360 Supersonix** | Developer/QA count fell from 8.0 (Q2) to 4.5 (Q3/Q4) — a 44% headcount cut — coinciding with the "sustained decline" flagged in productivity (7.63 → 5.38) and a defect spike to 33 defects in Sp11. | Was the team cut in half, and if so, why did per-member productivity *also* drop rather than hold steady or rise? Is the Sp11 defect spike related to the transition? |
+| **NWT - Core** | Headcount dropped from 10.0 to 4.5 between Q1 and Q2, exactly matching the steepest productivity drop in the whole portfolio (8.06 → 4.30), then headcount recovered to 10.0 by Q3/Q4 — but Q3TD productivity is blank. | What caused the mid-year staffing cut and the Q3TD data gap — is this a genuine reporting gap, or did output stop while the team was rebuilt? |
+| **CPOS** | 12 of 15 tracked sprints have no velocity data at all, yet quarterly averages (and a "Q3TD reversal" label) are reported with the same confidence as fully-populated apps. Predictability also swings from 0.28 to 4.67x. | Given the averages are built from only 2–3 real data points some quarters, how confident are you in the trend label, and why is sprint-level velocity going unreported? |
+| **Flow Engine (optimus)** | Predictability is essentially random noise — 12.0x, 5.67x, 5.33x, 4.43x, 3.57x, 3.33x, 3.25x, 2.16x, 2.0x across different sprints, on a 2-person team. | Is "planned SP" being entered consistently for this app? A 2-person team hitting 5–12x its sprint commitment repeatedly suggests the planning number itself isn't trustworthy. |
+| **XM360 CBM/Phoenix** | Defects spiked to 81 in Sp6 — roughly 3x every other sprint for this app (next-highest is 28) — while PRD defect density that sprint stayed near 0. | Is 81 a genuine incident (and if so what caused it), or a data-entry error? Why didn't it move the defect-density ratio if it's real? |
+| **Einstein 360 / XM360 Recovery/Reliability** | Both marked "Active App: No" but fully staffed (4.0 and 6.5 FTEs) with ongoing sprint delivery. | Should these be marked active, and if they're intentionally excluded from portfolio rollups, is that skewing the "26/29 apps reporting" coverage numbers upward or downward? |
+| **Payment & Billing workstream (all 4 scrums)** | Zero recorded defects across every sprint in Q1 and Q2. | Is defect logging actually wired up for this workstream, or is QA tracking these outside the tool this report pulls from? |
+| **Account Services - NOW, XM Velocity 2/Xplorers** | Q3TD is fully blank (not zero — absent) for both, per the Lead Observations tab. | When will Q3TD land, and in the meantime should these two be excluded from portfolio averages rather than silently dropped? |
+| **NWT-FSM 2 (NOVA)** | No Q1 baseline at all; app appears mid-year with data starting Q2. | Was this a genuinely new app stood up in Q2, or a rename/split of an existing app that broke the historical link? |
+| **Right Answers** | Predictability swings from 0.25 to 1.4x sprint to sprint (2-person team), and productivity jumped from Q1's 4.25 to Q2's 10.0 — a 135% jump the Lead Observations tab just calls "stable/mixed." | What specifically changed between Q1 and Q2 for a 2-person team to more than double output — is that repeatable or a one-off (e.g., backlog cleanup)? |
+
+The remaining ~15 applications (Xumo, Celestial Titan/Universal, DevOps, BXT, XRM scrums, NWT-UI, NWT-PSNB, Account Services BRE/XM PDF, Assisted Tools) have stable headcounts, non-extreme predictability, and no unexplained spikes — the trend narratives in your team member's tab for those look reasonably supported by the data, so I wouldn't spend board time interrogating them beyond what's already drafted.
